@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<persistence version="2.0" xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+    <persistence-unit name="movie" transaction-type="JTA">
+        <description>Main Persistence Unit</description>
+<!--        <provider>org.hibernate.ejb.HibernatePersistence</provider>-->
+<!--        <jta-data-source>java:jboss/datasources/ExampleDS</jta-data-source>-->
+        <class>org.leposava.model.Movie</class>
+        <class>org.leposava.model.Actor</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost\SQLEXPRESS:64129;DatabaseName=TEST"/>
+            <property name="javax.persistence.jdbc.user" value="sa"/>
+            <property name="javax.persistence.jdbc.password" value="sa"/>
+
+<!--            <property name="connection.driver_class" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>-->
+<!--            <property name="connection.url" value="jdbc:sqlserver://localhost\SQLEXPRESS:64129;DatabaseName=TEST " />-->
+
+            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2012Dialect"/>
+
+
+<!--            <property name="connection.driver_class" value="org.h2.Driver"/>-->
+<!--            <property name="connection.url" value="jdbc:h2:~/test" />-->
+
+
+<!--            <property name="connection.username" value="sa"/>-->
+<!--            <property name="connection.password" value="sa"/>-->
+
+<!--            <property name="hibernate.default_schema">PUBLIC</property>-->
+
+<!--            &lt;!&ndash; JDBC connection pool (use the built-in) &ndash;&gt;-->
+<!--            <property name="connection.pool_size">1</property>-->
+
+<!--            &lt;!&ndash; SQL dialect &ndash;&gt;-->
+<!--            <property name="dialect">org.hibernate.dialect.H2Dialect</property>-->
+
+<!--            &lt;!&ndash; Disable the second-level cache  &ndash;&gt;-->
+<!--            <property name="cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>-->
+
+<!--            &lt;!&ndash; Echo all executed SQL to stdout &ndash;&gt;-->
+<!--            <property name="show_sql">true</property>-->
+
+<!--            &lt;!&ndash; Drop and re-create the database schema on startup &ndash;&gt;-->
+<!--            <property name="hbm2ddl.auto">update</property>-->
+
+<!--            <mapping class="org.leposava.model.Movie"/>-->
+            <property name="hibernate.hbm2ddl.auto" value="create-drop" />
+            <property name="hibernate.default_batch_fetch_size" value="20" />
+                        <property name="hibernate.jdbc.batch_size" value="20" />
+                        <property name="hibernate.cache.use_second_level_cache" value="true" />
+                        <property name="hibernate.generate_statistics" value="false" />
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
+<!--            <property name="hibernate.search.default.directory_provider" value="filesystem" />-->
+<!--            <property name="hibernate.search.default.indexBase" value="../standalone/data/pad-por/lucene/index" />-->
+            <property name="hibernate.connection.charSet" value="UTF-8" />
+        </properties>
+    </persistence-unit>
+</persistence>

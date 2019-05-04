@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="move-database:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>move-database</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="move-database.war">
+      <element id="artifact" artifact-name="move-database:war exploded" />
+    </root>
+  </artifact>
+</component>
