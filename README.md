@@ -8,5 +8,6 @@
 <p>webapi/movies/1/1/search?year=1995&year=2018  --> serch movies between years with pagination</p>
 <p>webapi/search/movies/bytitle?title=Mission  --> Serch movies by title keywords</p>
 <br>
-<p> in StartupClass there is apsolute path to 2 images one of thi is <br>
+<p> in StartupClass there is apsolute path to 2 images one of them is <br>
  E:\\dev\\java-workspace\\move-database\\src\\main\\resources\\images\\flash.jpg </p>
+ <br> please make change to this paths before you start the program
