@@ -95,6 +95,32 @@ public class StartupClass {
         actors.add(newActor);
         movie1.setActors(actors);
         MovieDAO.getInstance().persist(movie1);
+
+        Movie movie2 = new Movie();
+        movie2.setTitle("Casino Royale (2006)");
+        movie2.setDescription("Director: Martin Campbell ");
+        movie2.setYear("2006");
+        movie2.setActors(actors);
+        MovieDAO.getInstance().persist(movie2);
+
+        Movie movie3 = new Movie();
+        movie3.setTitle("The Bourne Supremacy (2004)");
+        movie3.setDescription("Director: Paul Greengrass ");
+        movie3.setYear("2004");
+        MovieDAO.getInstance().persist(movie3);
+
+        Movie movie4 = new Movie();
+        movie4.setTitle("The Bourne Legacy (2012)");
+        movie4.setDescription("Director: Tony Gilroy");
+        movie4.setYear("2012");
+        MovieDAO.getInstance().persist(movie4);
+
+        Movie movie5 = new Movie();
+        movie5.setTitle("The Bourne Identity (2002)");
+        movie5.setDescription("Director: Doug Liman ");
+        movie5.setYear("2002");
+        MovieDAO.getInstance().persist(movie5);
+
     }
 
 
