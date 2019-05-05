@@ -1,4 +1,4 @@
-# move-database 
+# movie-database 
 #Jersey web service 
 <p> webapi/actors  -->Show all actors</p>
 <p>webapi/movies --> Show all movies</p>
