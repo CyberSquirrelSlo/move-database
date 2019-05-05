@@ -2,13 +2,10 @@ package org.leposava.util;
 
 import org.leposava.DTO.ActorDTO;
 import org.leposava.DTO.MovieDTO;
-import org.leposava.DTO.MoviePagingDTO;
 import org.leposava.model.Actor;
 import org.leposava.model.Movie;
 
 import javax.imageio.ImageIO;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.UriInfo;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;

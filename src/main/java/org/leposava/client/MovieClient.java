@@ -1,7 +1,6 @@
 package org.leposava.client;
 
 import org.leposava.DTO.MovieDTO;
-import org.leposava.model.Movie;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;

@@ -28,6 +28,11 @@ public class MoviePaginationResource {
                                           @PathParam("pageSize") int pageSize,
                                           @QueryParam("year") List<String> years) {
 
+        if( years == null || years.size() < 2 || years.get(0)=="" || years.get(1)==""
+                || Integer.parseInt(years.get(0)) > Integer.parseInt(years.get(1))){
+            return   Response.status(Response.Status.BAD_REQUEST).build();
+        }
+
         try {
             long totalRecord = MovieDAO.getInstance().getMoviesBetweenSize(years.get(0),years.get(1));
             List<Movie> movieList = MovieDAO.getInstance().getMoviesPagesBetweenTwoYears(years.get(0),years.get(1),startingFrom, pageSize, "asc");
