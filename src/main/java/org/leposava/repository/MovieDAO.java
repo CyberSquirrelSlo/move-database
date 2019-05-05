@@ -7,9 +7,10 @@ import org.leposava.model.Movie;
 
 import javax.naming.NamingException;
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
+import javax.persistence.metamodel.EntityType;
+import javax.persistence.metamodel.Metamodel;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -176,6 +177,18 @@ public class MovieDAO implements IMovieDAO {
         return null;
 
     }
+    @Override
+    public Long getMoviesBetweenSize(String year1, String year2) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Movie> cq = cb.createQuery(Movie.class);
+        Root<Movie> movie = cq.from(Movie.class);
+        cq.where(cb.between(movie.<String>get("year"), year1, year2));
+
+        TypedQuery<Movie> tp = entityManager.createQuery(cq);
+
+        return (long) tp.getResultList().size();
+
+    }
 
     @Override
     public List<Movie> getMoviesPages(int startingFrom, int pageSize, String order) {
@@ -183,6 +196,26 @@ public class MovieDAO implements IMovieDAO {
         CriteriaBuilder cb = entityManager.getCriteriaBuilder();
         CriteriaQuery<Movie> cq = cb.createQuery(Movie.class);
         Root<Movie> movie = cq.from(Movie.class);
+
+        if ("desc".equals(order)) {
+            cq.orderBy(cb.desc(movie.get("title")));
+        } else {
+            cq.orderBy(cb.asc(movie.get("title")));
+        }
+        TypedQuery<Movie> tp = entityManager.createQuery(cq);
+        tp.setFirstResult(startingFrom - 1);
+        tp.setMaxResults(pageSize);
+        return tp.getResultList();
+    }
+
+    @Override
+    public List<Movie> getMoviesPagesBetweenTwoYears(String year1, String year2, int startingFrom, int pageSize, String order) {
+
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Movie> cq = cb.createQuery(Movie.class);
+        Root<Movie> movie = cq.from(Movie.class);
+        cq.where(cb.between(movie.<String>get("year"), year1, year2));
+       // cq.where(cb.like(movie.<String>get("title"), keyword));
         if("desc".equals(order)){
             cq.orderBy(cb.desc(movie.get("title")));
         }else{
@@ -193,6 +226,7 @@ public class MovieDAO implements IMovieDAO {
         tp.setMaxResults(pageSize);
         return tp.getResultList();
     }
+
 
     @Override
     public long getActorsSize() {

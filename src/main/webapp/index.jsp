@@ -12,6 +12,8 @@
 
     <p><a href="webapi/search/movies?year=1995&year=2018">serch movies between years</a></p>
 
+    <p><a href="webapi/search/movies/1/1/search?year=1995&year=2018">serch movies between years with pagination</a></p>
+
     <p><a href="webapi/search/movies/bytitle?title=Pre">serch movies by title</a></p>
 
 

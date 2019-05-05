@@ -41,4 +41,8 @@ public interface IMovieDAO extends Serializable {
     List<Actor> getActorsPages(int startingFrom, int pageSize, String order);
 
     List<Movie> findMovesByTitle(String titile);
+
+    List<Movie> getMoviesPagesBetweenTwoYears(String year1, String year2, int startingFrom, int pageSize, String order);
+
+    Long getMoviesBetweenSize(String year1, String year2);
 }
