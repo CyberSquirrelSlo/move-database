@@ -37,6 +37,8 @@ public class MoviePaginationResource {
             List<MovieDTO> movieDTOS = new LinkedList<>();
             for (Movie movie : movieList) {
                 MovieDTO movieDTO = UtilClass.setMoveDTO(movie);
+                String photoUrl = info.getBaseUri().toString() + movieDTO.getPhotoURL();
+                movieDTO.setPhotoURL(photoUrl);
                 movieDTOS.add(movieDTO);
             }
 
@@ -95,6 +97,8 @@ public class MoviePaginationResource {
           List<MovieDTO> movieDTOS = new LinkedList<>();
           for (Movie movie : movieList) {
               MovieDTO movieDTO = UtilClass.setMoveDTO(movie);
+              String photoUrl = info.getBaseUri().toString() + movieDTO.getPhotoURL();
+              movieDTO.setPhotoURL(photoUrl);
               movieDTOS.add(movieDTO);
           }
 
