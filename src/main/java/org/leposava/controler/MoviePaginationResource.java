@@ -28,12 +28,15 @@ public class MoviePaginationResource {
     @GET
     @Path("{startingFrom}/{pageSize}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Response getCustomers(@PathParam("startingFrom") int startingFrom,
+    public Response getMovies(@PathParam("startingFrom") int startingFrom,
                                  @PathParam("pageSize") int pageSize) {
 
       try {
           long totalRecord = MovieDAO.getInstance().getMoviesSize();
-          List<Movie> movieList = MovieDAO.getInstance().getMoviesPages(startingFrom, pageSize);
+          List<Movie> movieList = MovieDAO.getInstance().getMoviesPages(startingFrom, pageSize, "asc");
+          if(movieList == null || movieList.size()<=0){
+              return Response.status(Response.Status.NOT_FOUND).build();
+          }
           List<MovieDTO> movieDTOS = new LinkedList<>();
           for (Movie movie : movieList) {
               MovieDTO movieDTO = UtilClass.setMoveDTO(movie);
@@ -45,17 +48,12 @@ public class MoviePaginationResource {
           moviePagingDTO.setTotalRecord(totalRecord);
           moviePagingDTO.setPageSize(pageSize);
 
-
           double pages = (double) totalRecord / (double) pageSize;
           moviePagingDTO.setPages(pages);
 
           double pageOn = (double) (pageSize + startingFrom) / (double) pageSize;
           moviePagingDTO.setPageOn(pageOn);
-
-
           moviePagingDTO.setNoOfPages(Math.ceil(pages));
-
-
           moviePagingDTO.setPageRatio((int) Math.floor(pageOn) + "/" + (int) Math.ceil(pages));
 
           String baseUri = info.getBaseUri().toString();

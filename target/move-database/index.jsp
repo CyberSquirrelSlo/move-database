@@ -1,15 +1,19 @@
 <html>
 <body>
-    <h2>Jersey RESTful Web Application!</h2>
+    <h2>Movie Database Jersey Application</h2>
     <br>
-    <a href="webapi/myresource">Jersey resource</a>
+
     <p><a href="webapi/actors">Show all actors</a></p>
-    <br>
+
     <p><a href="webapi/movies">Show all movies</a></p>
-    <br>
-    <p><a href="webapi/movies/1/1">Show  movies with pageing</a></p>
-    <br>
+
+    <p><a href="webapi/movies/1/1">Show  movies with paging</a></p>
+    <p><a href="webapi/actors/1/1">Show  actors with paging</a></p>
+
     <p><a href="webapi/search/movies?year=1995&year=2018">serch movies between years</a></p>
+
+    <p><a href="webapi/search/movies/bytitle?title=Pre">serch movies by title</a></p>
+
 
 </body>
 </html>

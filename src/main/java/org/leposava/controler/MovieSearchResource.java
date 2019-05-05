@@ -21,8 +21,32 @@ public class MovieSearchResource {
 
 
     @GET
+    @Path("bytitle")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public Response searchForMovies(@QueryParam(value = "year") List<String> years) {
+    public Response searchForMoviesByTitle(@QueryParam(value = "title") String title) {
+
+        if(title == null ||  title==""){
+            return   Response.status(Response.Status.BAD_REQUEST).build();
+        }
+
+        List<Movie> movies = MovieDAO.getInstance().findMovesByTitle(title);
+        if(movies == null ||  movies.size() <= 0){
+            return   Response.status(Response.Status.NOT_FOUND).build();
+        }
+        List<MovieDTO> movieDTOS = new LinkedList<>();
+        for(Movie movie : movies) {
+            MovieDTO movieDTO= UtilClass.setMoveDTO(movie);
+            movieDTOS.add(movieDTO);
+        }
+
+        return Response.ok(movieDTOS.toArray(new MovieDTO[movieDTOS.size()])).build();
+
+    }
+
+
+    @GET
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public Response searchForMoviesBetweenTwoYears(@QueryParam(value = "year") List<String> years) {
 
         if(years == null || years.size() < 2 || years.get(0)=="" || years.get(1)==""
         || Integer.parseInt(years.get(0)) > Integer.parseInt(years.get(1))){

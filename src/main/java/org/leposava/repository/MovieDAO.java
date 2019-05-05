@@ -133,6 +133,19 @@ public class MovieDAO implements IMovieDAO {
 
         return updatedActor;
     }
+    @Override
+    public List<Movie> findMovesByTitle(String titile) {
+        try {
+            TypedQuery<Movie> query = getEntityManager().createQuery("SELECT m   FROM movie m where  m.title like :t1"
+                    , Movie.class);
+            query.setParameter("t1", "%" +titile+ "%");
+
+            return query.getResultList();
+        }catch (NamingException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     @Override
     public List<Movie> findMovesByYear(List<String> years) {
@@ -165,32 +178,46 @@ public class MovieDAO implements IMovieDAO {
     }
 
     @Override
-    public List<Movie> getMoviesPages(int startingFrom, int pageSize) {
-        int pageNumber = startingFrom;
+    public List<Movie> getMoviesPages(int startingFrom, int pageSize, String order) {
 
-        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
-
-        CriteriaQuery<Long> countQuery = criteriaBuilder
-                .createQuery(Long.class);
-        countQuery.select(criteriaBuilder
-                .count(countQuery.from(Movie.class)));
-        Long count = entityManager.createQuery(countQuery)
-                .getSingleResult();
-
-        CriteriaQuery<Movie> criteriaQuery = criteriaBuilder
-                .createQuery(Movie.class);
-        Root<Movie> from = criteriaQuery.from(Movie.class);
-        CriteriaQuery<Movie> select = criteriaQuery.select(from);
-
-        TypedQuery<Movie> typedQuery = entityManager.createQuery(select);
-        while (pageNumber < count.intValue()) {
-            typedQuery.setFirstResult(pageNumber);
-            typedQuery.setMaxResults(pageSize);
-            System.out.println("Current page: " + typedQuery.getResultList());
-            pageNumber += pageSize;
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Movie> cq = cb.createQuery(Movie.class);
+        Root<Movie> movie = cq.from(Movie.class);
+        if("desc".equals(order)){
+            cq.orderBy(cb.desc(movie.get("title")));
+        }else{
+            cq.orderBy(cb.asc(movie.get("title")));
         }
-       return typedQuery.getResultList();
+        TypedQuery<Movie> tp = entityManager.createQuery(cq);
+        tp.setFirstResult(startingFrom-1);
+        tp.setMaxResults(pageSize);
+        return tp.getResultList();
     }
+
+    @Override
+    public long getActorsSize() {
+        Query query = entityManager.createNativeQuery("SELECT COUNT(*) FROM actor a ");
+        long count = ((Number) query.getSingleResult()).intValue();
+        return count;
+    }
+
+    @Override
+    public List<Actor> getActorsPages(int startingFrom, int pageSize, String order) {
+        CriteriaBuilder cb = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Actor> cq = cb.createQuery(Actor.class);
+        Root<Actor> actor = cq.from(Actor.class);
+        if("desc".equals(order)){
+            cq.orderBy(cb.desc(actor.get("lastName")));
+        }else{
+            cq.orderBy(cb.asc(actor.get("lastName")));
+        }
+        TypedQuery<Actor> tp = entityManager.createQuery(cq);
+        tp.setFirstResult(startingFrom-1);
+        tp.setMaxResults(pageSize);
+        return tp.getResultList();
+    }
+
+
 
 
     @Override

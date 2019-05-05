@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
  * Root resource (exposed at "myresource" path)
  */
 
-//@Stateful
+
 @Path("myresource")
 @RequestScoped
 public class MyResource  {

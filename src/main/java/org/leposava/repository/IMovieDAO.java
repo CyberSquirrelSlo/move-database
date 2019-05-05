@@ -34,5 +34,11 @@ public interface IMovieDAO extends Serializable {
 
     Long getMoviesSize();
 
-    List<Movie> getMoviesPages(int startingFrom, int pageSize);
+    List<Movie> getMoviesPages(int startingFrom, int pageSize, String order);
+
+    long getActorsSize();
+
+    List<Actor> getActorsPages(int startingFrom, int pageSize, String order);
+
+    List<Movie> findMovesByTitle(String titile);
 }
