@@ -24,7 +24,7 @@ public class StartupClass {
     }
 
     private void populateDB() {
-
+        String basePath = "E:\\dev\\java-workspace\\move-database\\src\\main\\resources\\images\\";
 
         Movie movie = new Movie();
         movie.setTitle("Pred dozdot");
@@ -32,7 +32,7 @@ public class StartupClass {
         movie.setYear("1995");
         //Class(getClass().getResourceAsStream)
 
-        byte[] photo = UtilClass.readPhoto("E:\\dev\\java-workspace\\move-database\\src\\main\\resources\\images\\flash.jpg");
+        byte[] photo = UtilClass.readPhoto(basePath +"flash.jpg");
         movie.setPhoto(photo);
 
 
@@ -56,7 +56,7 @@ public class StartupClass {
         movie1.setTitle("Mission: Impossible - Fallout (2018) ");
         movie1.setYear("2018");
 
-        byte[] photo1 = UtilClass.readPhoto("E:\\dev\\java-workspace\\move-database\\src\\main\\resources\\images\\missionimposible.jpg");
+        byte[] photo1 = UtilClass.readPhoto(basePath +"missionimposible.jpg");
         movie1.setPhoto(photo1);
 
 
