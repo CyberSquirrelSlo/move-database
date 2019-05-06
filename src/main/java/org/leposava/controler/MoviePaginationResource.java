@@ -28,7 +28,7 @@ public class MoviePaginationResource {
                                           @PathParam("pageSize") int pageSize,
                                           @QueryParam("year") List<String> years) {
 
-        if( years == null || years.size() < 2 || years.get(0)=="" || years.get(1)==""
+        if(years == null || years.size() < 2 || years.get(0)=="" || years.get(1)==""
                 || Integer.parseInt(years.get(0)) > Integer.parseInt(years.get(1))){
             return   Response.status(Response.Status.BAD_REQUEST).build();
         }
@@ -62,20 +62,20 @@ public class MoviePaginationResource {
 
             String baseUri = info.getBaseUri().toString();
             baseUri = baseUri + "movies/";
-            if (totalRecord > (startingFrom + pageSize - 1)) {
+            if (totalRecord > (startingFrom + pageSize)) {
                 moviePagingDTO.setNextPage(baseUri + (startingFrom + pageSize) + "/"
-                        + pageSize);
+                        + pageSize+"/search?year="+years.get(0)+"&year="+years.get(1));
             } else {
                 moviePagingDTO.setNextPage(null);
             }
             moviePagingDTO.setCurrentPage(info.getAbsolutePath().toString());
-            if (startingFrom <= 1) {
+            if (startingFrom <= 0) {
                 moviePagingDTO.setPrevPage(null);
             } else if (startingFrom - pageSize <= 0) {
-                moviePagingDTO.setPrevPage(baseUri + "1/" + pageSize);
+                moviePagingDTO.setPrevPage(baseUri + "0/" + pageSize+"/search?year="+years.get(0)+"&year="+years.get(1));
             } else {
                 moviePagingDTO.setPrevPage(baseUri + (startingFrom - pageSize) + "/"
-                        + pageSize);
+                        + pageSize+"/search?year="+years.get(0)+"&year="+years.get(1));
             }
 
             return Response.ok(moviePagingDTO).build();
@@ -122,17 +122,17 @@ public class MoviePaginationResource {
 
           String baseUri = info.getBaseUri().toString();
           baseUri = baseUri + "movies/";
-          if (totalRecord > (startingFrom + pageSize - 1)) {
+          if (totalRecord > (startingFrom + pageSize)) {
               moviePagingDTO.setNextPage(baseUri + (startingFrom + pageSize) + "/"
                       + pageSize);
           } else {
               moviePagingDTO.setNextPage(null);
           }
           moviePagingDTO.setCurrentPage(info.getAbsolutePath().toString());
-          if (startingFrom <= 1) {
+          if (startingFrom <= 0) {
               moviePagingDTO.setPrevPage(null);
           } else if (startingFrom - pageSize <= 0) {
-              moviePagingDTO.setPrevPage(baseUri + "1/" + pageSize);
+              moviePagingDTO.setPrevPage(baseUri + "0/" + pageSize);
           } else {
               moviePagingDTO.setPrevPage(baseUri + (startingFrom - pageSize) + "/"
                       + pageSize);

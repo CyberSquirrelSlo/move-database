@@ -30,6 +30,7 @@ public class StartupClass {
         movie.setTitle("Pred dozdot");
         movie.setDescription("Milčo Mančevski");
         movie.setYear("1995");
+        //Class(getClass().getResourceAsStream)
 
         byte[] photo = UtilClass.readPhoto("E:\\dev\\java-workspace\\move-database\\src\\main\\resources\\images\\flash.jpg");
         movie.setPhoto(photo);

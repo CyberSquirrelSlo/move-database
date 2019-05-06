@@ -62,17 +62,17 @@ public class ActorPaginationResource {
 
             String baseUri = info.getBaseUri().toString();
             baseUri = baseUri + "movies/";
-            if (totalRecord > (startingFrom + pageSize - 1)) {
+            if (totalRecord > (startingFrom + pageSize)) {
                 actorPagingDTO.setNextPage(baseUri + (startingFrom + pageSize) + "/"
                         + pageSize);
             } else {
                 actorPagingDTO.setNextPage(null);
             }
             actorPagingDTO.setCurrentPage(info.getAbsolutePath().toString());
-            if (startingFrom <= 1) {
+            if (startingFrom <= 0) {
                 actorPagingDTO.setPrevPage(null);
             } else if (startingFrom - pageSize <= 0) {
-                actorPagingDTO.setPrevPage(baseUri + "1/" + pageSize);
+                actorPagingDTO.setPrevPage(baseUri + "0/" + pageSize);
             } else {
                 actorPagingDTO.setPrevPage(baseUri + (startingFrom - pageSize) + "/"
                         + pageSize);

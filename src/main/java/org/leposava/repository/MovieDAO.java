@@ -203,7 +203,7 @@ public class MovieDAO implements IMovieDAO {
             cq.orderBy(cb.asc(movie.get("title")));
         }
         TypedQuery<Movie> tp = entityManager.createQuery(cq);
-        tp.setFirstResult(startingFrom - 1);
+        tp.setFirstResult(startingFrom);
         tp.setMaxResults(pageSize);
         return tp.getResultList();
     }
@@ -222,7 +222,7 @@ public class MovieDAO implements IMovieDAO {
             cq.orderBy(cb.asc(movie.get("title")));
         }
         TypedQuery<Movie> tp = entityManager.createQuery(cq);
-        tp.setFirstResult(startingFrom-1);
+        tp.setFirstResult(startingFrom);
         tp.setMaxResults(pageSize);
         return tp.getResultList();
     }
@@ -246,7 +246,7 @@ public class MovieDAO implements IMovieDAO {
             cq.orderBy(cb.asc(actor.get("lastName")));
         }
         TypedQuery<Actor> tp = entityManager.createQuery(cq);
-        tp.setFirstResult(startingFrom-1);
+        tp.setFirstResult(startingFrom);
         tp.setMaxResults(pageSize);
         return tp.getResultList();
     }

@@ -50,12 +50,11 @@ public final class UtilClass {
         return actorDTO;
     }
 
-    public  static  byte[] readPhoto(String path){
+    public static byte[] readPhoto(String path){//loadFile ali loadresouce
         try {
             BufferedImage image = ImageIO.read(new File(path));
             ByteArrayOutputStream os = new ByteArrayOutputStream();
             ImageIO.write(image, "jpg", os);
-            InputStream is = new ByteArrayInputStream(os.toByteArray());
             byte[] bi = new byte[os.size()];
             int i = 0;
             for (byte b : os.toByteArray()) {
