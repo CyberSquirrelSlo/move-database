@@ -9,8 +9,8 @@
 <p>webapi/search/movies/bytitle?title=Mission  --> Serch movies by title keywords</p>
 <br>
 <p> in StartupClass there is apsolute path to 2 images one of them is <br>
- E:\\dev\\java-workspace\\move-database\\src\\main\\resources\\images\\flash.jpg </p>
-please make change to this paths before you start the program
+ E:\\dev\\java-workspace\\move-database\\src\\main\\resources\\images\\flash.jpg 
+please make change to this paths before you start the program</p>
  
  <br>
  primer POST http://localhost:8080/move-database/webapi/movies/movie
