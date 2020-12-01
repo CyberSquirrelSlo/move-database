@@ -15,7 +15,7 @@ please make change to this paths before you start the program</p>
  <br>
  primer POST http://localhost:8080/move-database/webapi/movies/movie
 
-<code>
+```
  {
          "description": "Anna Boden, Ryan Fleck  ",
          "title": "Captain Marvel (2019)",
@@ -30,4 +30,3 @@ please make change to this paths before you start the program</p>
              }
              ]
      }
-   <code>
