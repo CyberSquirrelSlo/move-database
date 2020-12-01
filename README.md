@@ -10,7 +10,7 @@
 <br>
 <p> in StartupClass there is apsolute path to 2 images one of them is <br>
  E:\\dev\\java-workspace\\move-database\\src\\main\\resources\\images\\flash.jpg </p>
- <br> please make change to this paths before you start the program
+please make change to this paths before you start the program
  
  <br>
  primer POST http://localhost:8080/move-database/webapi/movies/movie
