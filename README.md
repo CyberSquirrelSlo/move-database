@@ -14,32 +14,20 @@ please make change to this paths before you start the program</p>
  
  <br>
  primer POST http://localhost:8080/move-database/webapi/movies/movie
- <br>
+
 <code>
- {<br>
+ {
          "description": "Anna Boden, Ryan Fleck  ",
-         <br>
          "title": "Captain Marvel (2019)",
-         <br>
          "year": "2019" ,
-          <br>
          "actors": [{
-          <br>
                  "firstName": "Brie   ",
-                  <br>
                  "lastName": "Larson"
-                  <br>
              },
-              <br>
              {
-              <br>
                  "firstName": "Domhnall",
-                  <br>
                  "lastName": "Gleeson"
-                  <br>
              }
-              <br>
              ]
-              <br>
      }
-     <code>
+   <code>
